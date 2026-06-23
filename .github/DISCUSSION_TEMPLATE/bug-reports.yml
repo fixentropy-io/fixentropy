@@ -4,15 +4,43 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### Thank you for reporting a bug! 
+        ### Thank you for reporting a bug!
         Please provide as much clear detail as possible so our team can investigate and fix it quickly.
 
   - type: input
     id: environment
     attributes:
       label: Environment / Version
-      description: What version, environment, or URL did this happen on?
+      description: What version or environment did this happen on?
       placeholder: e.g., Production, Staging, v1.4.2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      description: Which OS did you experience this on?
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: Which browser did you experience this on? (Leave as N/A if not applicable.)
+      options:
+        - N/A
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other
     validations:
       required: true
 
@@ -25,6 +53,7 @@ body:
         - "Low (Cosmetic / minor annoyance)"
         - "Medium (Functionality is impaired, but a workaround exists)"
         - "High (Core feature broken / completely blocked)"
+        - "Critical (Data loss / security issue)"
     validations:
       required: true
 
@@ -41,13 +70,22 @@ body:
     attributes:
       label: Steps to Reproduce
       description: Tell us exactly how to reproduce the bug.
-      value: |
+      placeholder: |
         1. Go to '...'
         2. Click on '....'
         3. Scroll down to '....'
         4. See error
     validations:
       required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs / Stack Trace / Screenshots
+      description: Paste any relevant log output, error messages, or stack traces. This will be automatically formatted as code.
+      render: shell
+    validations:
+      required: false
 
   - type: checkboxes
     id: checkboxes
